@@ -1,0 +1,6 @@
+{
+  "name": "FOUR5 Shoes",
+  "description": "Premium Indian athletic and lifestyle footwear brand from Chikhli, Maharashtra. The Next Move.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
