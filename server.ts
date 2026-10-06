@@ -4,6 +4,7 @@ import { GoogleGenAI } from '@google/genai';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -14,7 +15,8 @@ async function startServer() {
   const app = express();
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-  app.use(express.json());
+  app.use(express.json({ limit: '25mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
   // Initialize GoogleGenAI SDK with required telemetry header
   const ai = new GoogleGenAI({
@@ -33,6 +35,61 @@ async function startServer() {
       brand: 'FOUR5 Shoes',
       aiReady: Boolean(process.env.GEMINI_API_KEY),
     });
+  });
+
+  // Upload and persist banner and shoe images directly to disk
+  app.post('/api/upload-banner', async (req: Request, res: Response) => {
+    try {
+      const { type, dataUrl } = req.body;
+      if (!type || !dataUrl) {
+        return res.status(400).json({ error: 'Missing type or dataUrl' });
+      }
+
+      const matches = dataUrl.match(/^data:image\/([A-Za-z-+]+);base64,(.+)$/);
+      if (!matches || matches.length !== 3) {
+        return res.status(400).json({ error: 'Invalid base64 image data' });
+      }
+
+      const mimeSub = matches[1].toLowerCase();
+      const ext = mimeSub.includes('png') ? 'png' : mimeSub.includes('webp') ? 'webp' : 'jpg';
+      const buffer = Buffer.from(matches[2], 'base64');
+
+      let filename = 'men.jpg';
+      if (type === 'women') {
+        filename = `women.${ext}`;
+      } else if (type === 'men') {
+        filename = `men.${ext}`;
+      } else if (type === 'performance') {
+        filename = `performance-shoe.${ext}`;
+      } else if (type === 'hero') {
+        filename = `hero-shoe.${ext}`;
+      } else if (type === 'story') {
+        filename = `story-shoe.${ext}`;
+      } else {
+        filename = `${type}.${ext}`;
+      }
+
+      const publicPath = path.resolve(__dirname, 'public', filename);
+      await fs.promises.writeFile(publicPath, buffer);
+
+      // Also sync to dist if build exists
+      const distPath = path.resolve(__dirname, 'dist', filename);
+      try {
+        await fs.promises.writeFile(distPath, buffer);
+      } catch {
+        // ignore if dist does not exist yet
+      }
+
+      console.log(`[Upload] Successfully saved ${type} image to ${publicPath} (${buffer.length} bytes)`);
+      return res.json({
+        success: true,
+        filename,
+        url: `/${filename}?v=${Date.now()}`,
+      });
+    } catch (err: any) {
+      console.error('[Upload Error]', err);
+      return res.status(500).json({ error: err.message || 'Failed to save image' });
+    }
   });
 
   // Gemini AI Stylist Multi-turn Chat Endpoint (with optional Google Search grounding)
@@ -300,6 +357,9 @@ Homegrown models like **45 Velocity Runner** with TPU toe guards and micro-chann
       });
     }
   });
+
+  // Serve static assets from public folder directly (for video, images, etc.)
+  app.use(express.static(path.resolve(__dirname, 'public')));
 
   const isProd = process.env.NODE_ENV === 'production';
 

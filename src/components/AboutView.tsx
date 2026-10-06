@@ -1,17 +1,32 @@
 import React from 'react';
-import { ArrowRight, MapPin, Compass, ShieldCheck, Award, Heart, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, MapPin, Compass, ShieldCheck, Award, Heart, CheckCircle2 } from 'lucide-react';
 import { BRAND_INFO } from '../data/products';
 
 interface AboutViewProps {
   onExploreShop: () => void;
   onContact: () => void;
+  onNavigateHome?: () => void;
 }
 
-export const AboutView: React.FC<AboutViewProps> = ({ onExploreShop, onContact }) => {
+export const AboutView: React.FC<AboutViewProps> = ({ onExploreShop, onContact, onNavigateHome }) => {
   return (
     <div className="py-12 lg:py-20 bg-[#FAFAFB] text-zinc-900 text-left">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
+        {/* Back Button */}
+        {onNavigateHome && (
+          <div>
+            <button
+              type="button"
+              onClick={onNavigateHome}
+              className="group inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-zinc-100 text-zinc-900 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer border border-zinc-200 shadow-xs active:scale-95"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#FF4800] group-hover:-translate-x-1 transition-transform" />
+              <span>← मुख्य पेजवर परत जा (Back to Home)</span>
+            </button>
+          </div>
+        )}
+
         {/* Hero Banner for About */}
         <div className="bg-[#0F0F11] text-white rounded-3xl p-8 sm:p-14 lg:p-20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF4800]/15 rounded-full blur-3xl pointer-events-none" />

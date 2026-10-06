@@ -9,10 +9,15 @@ import {
   CheckCircle2,
   HelpCircle,
   ArrowRight,
+  ArrowLeft,
 } from 'lucide-react';
 import { BRAND_INFO } from '../data/products';
 
-export const ContactView: React.FC = () => {
+interface ContactViewProps {
+  onNavigateHome?: () => void;
+}
+
+export const ContactView: React.FC<ContactViewProps> = ({ onNavigateHome }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -51,8 +56,22 @@ export const ContactView: React.FC = () => {
 
   return (
     <div className="py-12 lg:py-20 bg-[#FAFAFB] text-zinc-900 text-left">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
+        {/* Back Button */}
+        {onNavigateHome && (
+          <div>
+            <button
+              type="button"
+              onClick={onNavigateHome}
+              className="group inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-zinc-100 text-zinc-900 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer border border-zinc-200 shadow-xs active:scale-95"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#FF4800] group-hover:-translate-x-1 transition-transform" />
+              <span>← मुख्य पेजवर परत जा (Back to Home)</span>
+            </button>
+          </div>
+        )}
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="font-tech text-xs tracking-widest text-[#FF4800] uppercase font-bold">

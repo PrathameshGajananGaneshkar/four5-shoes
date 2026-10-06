@@ -154,36 +154,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action Icons */}
           <div className="flex items-center gap-1 sm:gap-2">
-            {/* Trend Radar Button */}
-            {onOpenTrendRadar && (
-              <button
-                type="button"
-                onClick={onOpenTrendRadar}
-                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 text-white hover:bg-zinc-800 transition-all text-xs font-bold cursor-pointer shadow-xs group"
-                aria-label="Footwear Trend Radar"
-                title="Live Footwear Trend Radar (Google Search Grounded)"
-              >
-                <Globe className="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-45 transition-transform" />
-                <span>Trend Radar</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              </button>
-            )}
-
-            {/* Photo Manager Button */}
-            {onOpenImageManager && (
-              <button
-                type="button"
-                onClick={onOpenImageManager}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-[#FF4800] text-white transition-all text-xs font-bold cursor-pointer shadow-xs group"
-                aria-label="Manage Shoe Photos"
-                title="फोटो मॅनेजर - वेबसाइटवरील शूजचे फोटो बदला"
-              >
-                <Camera className="w-3.5 h-3.5 text-amber-300 group-hover:text-white transition-colors" />
-                <span className="hidden sm:inline">फोटो बदला</span>
-                <span className="sm:hidden">फोटो</span>
-              </button>
-            )}
-
             {/* AI Stylist Button */}
             {onOpenChat && (
               <button
@@ -311,40 +281,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
 
               <div className="pt-4 mt-4 border-t border-zinc-200 space-y-2">
-                {onOpenImageManager && (
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenImageManager();
-                    }}
-                    className="w-full text-left px-3 py-2.5 text-sm font-bold text-white bg-zinc-900 hover:bg-[#FF4800] rounded-lg flex items-center justify-between transition-colors shadow-sm"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Camera className="w-4 h-4 text-amber-300" />
-                      <span>📸 शूज फोटो मॅनेजर (Change Photos)</span>
-                    </div>
-                    <span className="text-[10px] bg-[#FF4800] text-white px-2 py-0.5 rounded-full font-bold">
-                      Admin
-                    </span>
-                  </button>
-                )}
-                {onOpenTrendRadar && (
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenTrendRadar();
-                    }}
-                    className="w-full text-left px-3 py-2.5 text-sm font-bold text-zinc-900 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-lg flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Globe className="w-4 h-4 text-emerald-600" />
-                      <span>Live Trend Radar</span>
-                    </div>
-                    <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold">
-                      LIVE
-                    </span>
-                  </button>
-                )}
                 {onOpenChat && (
                   <button
                     onClick={() => {

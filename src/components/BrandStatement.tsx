@@ -12,9 +12,9 @@ export const BrandStatement: React.FC<BrandStatementProps> = ({ onDiscover }) =>
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAFAFB] border-b border-zinc-200 relative overflow-hidden">
+    <section className="py-14 sm:py-20 lg:py-28 bg-[#FAFAFB] border-b border-zinc-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
           
           {/* Subheading pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 text-white text-xs font-tech font-bold uppercase tracking-widest">
@@ -23,12 +23,12 @@ export const BrandStatement: React.FC<BrandStatementProps> = ({ onDiscover }) =>
           </div>
 
           {/* Big Editorial Headline */}
-          <h2 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-zinc-950 leading-none">
+          <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-7xl tracking-tighter uppercase text-zinc-950 leading-none">
             {BRAND_INFO.tagline}
           </h2>
 
           {/* Editorial Paragraph */}
-          <p className="text-xl sm:text-2xl text-zinc-700 font-normal leading-relaxed tracking-tight max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl lg:text-2xl text-zinc-700 font-normal leading-relaxed tracking-tight max-w-3xl mx-auto">
             &ldquo;FOUR5 is built for the next generation — combining premium design, everyday comfort and performance for people who refuse to move like everyone else.&rdquo;
           </p>
 

@@ -242,41 +242,53 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTracking, onOp
               CONTACT
             </h4>
 
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3.5 text-sm">
               <li>
+                <div className="text-[11px] font-tech text-zinc-400 uppercase tracking-wider mb-0.5">
+                  Contact Number
+                </div>
                 <a
                   href={`tel:${BRAND_INFO.phone}`}
-                  className="flex items-center gap-3 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-zinc-200 hover:text-white transition-colors font-medium"
                 >
                   <Phone className="w-4 h-4 text-[#FF4800] shrink-0" />
                   <span>{BRAND_INFO.phoneDisplay}</span>
                 </a>
               </li>
               <li>
+                <div className="text-[11px] font-tech text-zinc-400 uppercase tracking-wider mb-0.5">
+                  WhatsApp Number
+                </div>
                 <a
                   href={`https://wa.me/${BRAND_INFO.whatsapp}?text=${encodeURIComponent(BRAND_INFO.whatsappDefaultMsg)}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-3 hover:text-emerald-400 transition-colors"
+                  className="flex items-center gap-2.5 text-zinc-200 hover:text-emerald-400 transition-colors font-medium"
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>WhatsApp: {BRAND_INFO.whatsappDisplay}</span>
+                  <span>{BRAND_INFO.whatsappDisplay}</span>
                 </a>
               </li>
               <li>
+                <div className="text-[11px] font-tech text-zinc-400 uppercase tracking-wider mb-0.5">
+                  Email
+                </div>
                 <a
                   href={`mailto:${BRAND_INFO.email}`}
-                  className="flex items-center gap-3 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-zinc-200 hover:text-white transition-colors font-medium"
                 >
                   <Mail className="w-4 h-4 text-[#FF4800] shrink-0" />
                   <span>{BRAND_INFO.email}</span>
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#FF4800] shrink-0 mt-0.5" />
-                <span className="text-zinc-400 leading-snug">
-                  {BRAND_INFO.address}
-                </span>
+              <li>
+                <div className="text-[11px] font-tech text-zinc-400 uppercase tracking-wider mb-0.5">
+                  Address
+                </div>
+                <div className="flex items-start gap-2.5 text-zinc-300 leading-snug">
+                  <MapPin className="w-4 h-4 text-[#FF4800] shrink-0 mt-0.5" />
+                  <span>{BRAND_INFO.address}</span>
+                </div>
               </li>
             </ul>
 

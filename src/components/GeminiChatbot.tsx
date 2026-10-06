@@ -260,34 +260,6 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({
 
   return (
     <>
-      {/* Floating Trigger Button (Bottom Right) */}
-      {!isOpen && (
-        <button
-          type="button"
-          onClick={onOpen}
-          className="fixed bottom-6 right-6 z-40 group flex items-center gap-2.5 bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 text-white pl-4 pr-5 py-3.5 rounded-full shadow-2xl border border-zinc-800 hover:border-[#FF4800] hover:shadow-[0_0_25px_rgba(255,72,0,0.35)] transition-all duration-300 hover:scale-105 cursor-pointer"
-          aria-label="Open AI Shoe Stylist"
-        >
-          <div className="relative">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FF4800] to-orange-600 flex items-center justify-center text-white shadow-md">
-              <Sparkles className="w-4 h-4 animate-pulse" />
-            </div>
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-zinc-900 rounded-full animate-ping" />
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-zinc-900 rounded-full" />
-          </div>
-
-          <div className="flex flex-col text-left">
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs font-black tracking-wider uppercase">AI Stylist</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#FF4800]/20 text-[#FF4800] border border-[#FF4800]/30 rounded">
-                Gemini
-              </span>
-            </div>
-            <span className="text-[10px] text-zinc-400 font-medium">Ask sizing & footwear advice</span>
-          </div>
-        </button>
-      )}
-
       {/* Chat Window Modal / Drawer */}
       {isOpen && (
         <div

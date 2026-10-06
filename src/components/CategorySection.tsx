@@ -13,26 +13,26 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   categories = CATEGORIES_DATA,
 }) => {
   return (
-    <section className="py-20 bg-white border-b border-zinc-200">
+    <section className="py-14 sm:py-20 bg-white border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-3 sm:gap-4">
           <div>
             <span className="font-tech text-xs tracking-widest text-[#FF4800] uppercase font-bold">
               CURATED COLLECTIONS
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-950 uppercase tracking-tight mt-1">
+            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-zinc-950 uppercase tracking-tight mt-1">
               Shop By Category
             </h2>
           </div>
-          <p className="text-zinc-600 text-sm sm:text-base max-w-md">
+          <p className="text-zinc-600 text-xs sm:text-sm lg:text-base max-w-md">
             From competition tracks to city sidewalks. Explore performance footwear and sneakers engineered for modern lifestyles.
           </p>
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((cat, index) => {
             const isFeaturedLarge = index === 0 || index === 2;
 
@@ -48,7 +48,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
                     onSelectCategory(cat.name);
                   }
                 }}
-                className={`group relative overflow-hidden rounded-2xl bg-zinc-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-end min-h-[340px] focus:outline-none focus:ring-2 focus:ring-[#FF4800] ${
+                className={`group relative overflow-hidden rounded-2xl bg-zinc-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-end min-h-[260px] sm:min-h-[320px] lg:min-h-[360px] focus:outline-none focus:ring-2 focus:ring-[#FF4800] ${
                   isFeaturedLarge ? 'sm:col-span-2 lg:col-span-2' : 'col-span-1'
                 }`}
               >

@@ -12,12 +12,12 @@ export const BRAND_INFO = {
   heroHeadline: '45 SHOES',
   heroStatement: 'Step Into Your Legacy.',
   heroSupportingText: 'Exclusive 45 Footwear designed for those who move differently.',
-  phone: '+91 1800 200 4545',
-  phoneDisplay: '1800-200-4545',
-  whatsapp: '919820045454',
-  whatsappDisplay: '+91 98200 45454',
-  email: 'support@45shoes.com',
-  address: '45 Footwear Studio, Main High Street, Maharashtra 443201, India',
+  phone: '+91 8237301612',
+  phoneDisplay: '+91 8237301612',
+  whatsapp: '918668720597',
+  whatsappDisplay: '+91 8668720597',
+  email: 'hello@four5shoes.com',
+  address: 'Chikhli, Buldhana, Maharashtra, India',
   whatsappDefaultMsg: 'Hello 45 Shoes, I would like to know more about your footwear collection.',
   priceRange: '₹2,299 – ₹3,499',
   shippingThreshold: 1999,
@@ -48,7 +48,7 @@ export const CATEGORIES_DATA: {
     name: 'Running Shoes',
     slug: 'running-shoes',
     count: 10,
-    image: '/shoe2.png',
+    image: '/shoe2-clean.png',
     tagline: 'Featherlight 45 stride response with energy-rebounding midsoles.',
   },
   {
@@ -62,7 +62,7 @@ export const CATEGORIES_DATA: {
     name: 'Lifestyle Footwear',
     slug: 'lifestyle-footwear',
     count: 11,
-    image: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80',
     tagline: 'Contemporary 45 athletic luxury crafted for the modern mover.',
   },
 ];
@@ -103,11 +103,9 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'FOUR5 Drop Edition (Black / Orange)',
         hex: '#FF4800',
-        image: '/shoe2.png',
+        image: '/shoe2-clean.png',
         gallery: [
-          '/shoe2.png',
           '/shoe2-clean.png',
-          '/shoe2.jpeg',
         ],
       },
       {
@@ -199,7 +197,7 @@ export const PRODUCTS_DATA: Product[] = [
         image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
         gallery: [
           'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
         ],
       },
     ],
@@ -252,9 +250,9 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Desert Sand / Obsidian',
         hex: '#D1C7BD',
-        image: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&auto=format&fit=crop&q=80',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
         gallery: [
-          'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
         ],
       },
@@ -264,7 +262,7 @@ export const PRODUCTS_DATA: Product[] = [
         image: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
         gallery: [
           'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
         ],
       },
     ],

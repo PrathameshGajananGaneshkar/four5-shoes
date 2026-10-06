@@ -20,11 +20,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [selectedColor, setSelectedColor] = useState<ProductColor>(product.colors[0]);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Determine which image to show on hover (either second gallery item or main)
-  const displayImage =
-    isHovered && selectedColor.gallery.length > 1
-      ? selectedColor.gallery[1]
-      : selectedColor.image;
+  // Keep consistent shoe image on hover (do not swap image on mouse hover)
+  const displayImage = selectedColor.image;
 
   const discountPercent = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100

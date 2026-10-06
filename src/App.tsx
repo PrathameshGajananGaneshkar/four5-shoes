@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { Camera } from 'lucide-react';
+import { Camera, ArrowLeft } from 'lucide-react';
 import { ActiveView, CartItem, Product, ProductColor } from './types';
 import { PRODUCTS, BRAND_INFO, CATEGORIES_DATA } from './data/products';
 import {
@@ -448,6 +448,7 @@ export default function App() {
                 onAddToCart={(p, c, s) => handleAddToCart(p, c, s)}
                 onToggleWishlist={handleToggleWishlist}
                 wishlistIds={wishlistProductIds}
+                onNavigateHome={() => handleNavigate('home')}
               />
             </motion.div>
           )}
@@ -463,6 +464,7 @@ export default function App() {
               <AboutView
                 onExploreShop={() => handleNavigate('shop')}
                 onContact={() => handleNavigate('contact')}
+                onNavigateHome={() => handleNavigate('home')}
               />
             </motion.div>
           )}
@@ -475,7 +477,7 @@ export default function App() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
             >
-              <ContactView />
+              <ContactView onNavigateHome={() => handleNavigate('home')} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -607,6 +609,19 @@ export default function App() {
         }}
       />
 
+      {/* Floating Back to Home button when browsing other pages */}
+      {currentView !== 'home' && (
+        <button
+          type="button"
+          onClick={() => handleNavigate('home')}
+          className="fixed bottom-6 left-6 z-40 group flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-950 text-white border border-zinc-700 hover:bg-[#FF4800] hover:border-[#FF4800] shadow-2xl backdrop-blur-md text-xs font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95"
+          title="मुख्य होमपेजवर परत जा (Back to Home)"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#FF4800] group-hover:text-white transition-colors" />
+          <span>← Back to Home</span>
+        </button>
+      )}
+
       {/* Live Store Shoe Photo Manager Modal */}
       <ImageManagerModal
         isOpen={isImageManagerOpen}
@@ -614,17 +629,6 @@ export default function App() {
         products={productsList}
         onRefresh={handleRefreshImages}
       />
-
-      {/* Floating Quick Photo Manager button for store owner */}
-      <button
-        type="button"
-        onClick={() => setIsImageManagerOpen(true)}
-        className="fixed bottom-6 left-6 z-40 bg-zinc-900/90 hover:bg-[#FF4800] text-white px-3.5 py-2.5 rounded-full shadow-2xl border border-zinc-700 hover:border-[#FF4800] flex items-center gap-2 text-xs font-bold transition-all cursor-pointer backdrop-blur-md group"
-        title="वेबसाइटवरील शूजचे फोटो बदला (Change Shoe Images)"
-      >
-        <Camera className="w-4 h-4 text-amber-300 group-hover:text-white transition-colors" />
-        <span className="hidden sm:inline">फोटो मॅनेजर</span>
-      </button>
     </div>
   );
 }

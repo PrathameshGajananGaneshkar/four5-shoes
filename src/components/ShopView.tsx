@@ -7,6 +7,7 @@ import {
   ChevronDown,
   RotateCcw,
   Sparkles,
+  ArrowLeft,
 } from 'lucide-react';
 import { Product, ProductCategory, ProductColor } from '../types';
 import { ProductCard } from './ProductCard';
@@ -20,6 +21,7 @@ interface ShopViewProps {
   onAddToCart: (product: Product, color: ProductColor, size: number) => void;
   onToggleWishlist: (product: Product) => void;
   wishlistIds: string[];
+  onNavigateHome?: () => void;
 }
 
 export const ShopView: React.FC<ShopViewProps> = ({
@@ -30,6 +32,7 @@ export const ShopView: React.FC<ShopViewProps> = ({
   onAddToCart,
   onToggleWishlist,
   wishlistIds,
+  onNavigateHome,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     initialCategory || 'All'
@@ -128,10 +131,18 @@ export const ShopView: React.FC<ShopViewProps> = ({
             <span>CHIKHLI, MAHARASHTRA</span>
           </div>
           <h1 className="font-display font-black text-3xl sm:text-5xl text-zinc-950 uppercase tracking-tight">
-            Explore All Brand 45 Shoes
+            {selectedGender === 'Men'
+              ? "Men's Footwear Collection"
+              : selectedGender === 'Women'
+              ? "Women's Footwear Collection"
+              : 'Explore All Brand 45 Shoes'}
           </h1>
           <p className="text-zinc-600 text-sm sm:text-base mt-1 max-w-2xl">
-            Explore high-response running shoes, urban sneakers, gym trainers, and lifestyle court footwear engineered for active lifestyles.
+            {selectedGender === 'Men'
+              ? "Engineered for maximum athletic response, street styling, and durable everyday comfort for men."
+              : selectedGender === 'Women'
+              ? "Lightweight, ergonomic athletic footwear and sneakers sculpted for all-day comfort and bold style."
+              : 'Explore high-response running shoes, urban sneakers, gym trainers, and lifestyle court footwear engineered for active lifestyles.'}
           </p>
         </div>
 
@@ -447,6 +458,20 @@ export const ShopView: React.FC<ShopViewProps> = ({
           </main>
 
         </div>
+
+        {/* Bottom Back to Home Banner */}
+        {onNavigateHome && (
+          <div className="mt-16 text-center py-8 border-t border-zinc-200">
+            <button
+              type="button"
+              onClick={onNavigateHome}
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-zinc-950 hover:bg-[#FF4800] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-lg active:scale-95"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>← मुख्य होमपेजवर परत जा (Back to Home)</span>
+            </button>
+          </div>
+        )}
 
       </div>
     </div>

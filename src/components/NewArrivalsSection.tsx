@@ -37,7 +37,7 @@ export const NewArrivalsSection: React.FC<NewArrivalsSectionProps> = ({
   };
 
   return (
-    <section className="py-20 bg-white border-b border-zinc-200 overflow-hidden">
+    <section className="py-14 sm:py-20 bg-white border-b border-zinc-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -47,10 +47,10 @@ export const NewArrivalsSection: React.FC<NewArrivalsSectionProps> = ({
               <Sparkles className="w-3.5 h-3.5 text-[#FF4800]" />
               <span>JUST DROPPED</span>
             </div>
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-950 uppercase tracking-tight">
+            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-zinc-950 uppercase tracking-tight">
               NEW ARRIVALS
             </h2>
-            <p className="text-zinc-600 text-sm sm:text-base mt-1">
+            <p className="text-zinc-600 text-xs sm:text-sm lg:text-base mt-1">
               Fresh silhouettes. New energy. Your next move starts here.
             </p>
           </div>

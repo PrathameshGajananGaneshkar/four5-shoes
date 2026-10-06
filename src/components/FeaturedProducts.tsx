@@ -30,20 +30,20 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
       : products.filter((p) => p.category === activeTab);
 
   return (
-    <section className="py-20 bg-[#FAFAFB] border-b border-zinc-200">
+    <section className="py-14 sm:py-20 bg-[#FAFAFB] border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-[#FF4800] text-xs font-tech font-bold uppercase tracking-wider mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               <span>THE CORE ROTATION</span>
             </div>
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-950 uppercase tracking-tight">
+            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-zinc-950 uppercase tracking-tight">
               Featured Silhouettes
             </h2>
-            <p className="text-zinc-600 text-sm sm:text-base mt-1">
+            <p className="text-zinc-600 text-xs sm:text-sm lg:text-base mt-1">
               Engineered in Chikhli with bold aesthetics, featherlight foam, and zero compromises.
             </p>
           </div>

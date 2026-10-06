@@ -81,19 +81,19 @@ export const OneByOneShowcase: React.FC<OneByOneShowcaseProps> = ({
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-[#0F0F11] via-[#16161A] to-[#111113] text-white relative overflow-hidden border-t border-b border-zinc-800">
+    <section className="py-12 sm:py-20 lg:py-24 bg-gradient-to-b from-[#0F0F11] via-[#16161A] to-[#111113] text-white relative overflow-hidden border-t border-b border-zinc-800">
       {/* Background radial accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF4800]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-tech font-bold uppercase tracking-wider text-[#FF4800] mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-tech font-bold uppercase tracking-wider text-[#FF4800] mb-2 sm:mb-3">
               <span className="w-2 h-2 rounded-full bg-[#FF4800] animate-pulse" />
               EXCLUSIVE BRAND 45 LINEUP
             </div>
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight uppercase">
+            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase">
               Brand 45 Shoes — One By One
             </h2>
           </div>
@@ -130,7 +130,7 @@ export const OneByOneShowcase: React.FC<OneByOneShowcaseProps> = ({
         </div>
 
         {/* Main Stage Spotlight Card */}
-        <div className="bg-zinc-900/90 border border-zinc-800/90 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+        <div className="bg-zinc-900/90 border border-zinc-800/90 rounded-3xl p-4 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-md">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Visual Image Gallery */}
