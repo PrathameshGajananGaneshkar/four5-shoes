@@ -42,7 +42,6 @@ import { CustomerAccountModal } from './components/CustomerAccountModal';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { TrendRadarModal } from './components/TrendRadarModal';
-import { ImageManagerModal } from './components/ImageManagerModal';
 
 export default function App() {
   // Navigation View State
@@ -57,7 +56,6 @@ export default function App() {
   const [categoriesList, setCategoriesList] = useState(() =>
     applyCustomImagesToCategories(CATEGORIES_DATA)
   );
-  const [isImageManagerOpen, setIsImageManagerOpen] = useState(false);
 
   const handleRefreshImages = () => {
     setProductsList(applyCustomImagesToProducts(PRODUCTS));
@@ -68,6 +66,48 @@ export default function App() {
     const onImagesUpdated = () => handleRefreshImages();
     window.addEventListener('four5:images-updated', onImagesUpdated);
     return () => window.removeEventListener('four5:images-updated', onImagesUpdated);
+  }, []);
+
+  // Automatic sync from browser localStorage to server disk
+  useEffect(() => {
+    const syncLocalImagesToServer = async () => {
+      try {
+        const productImagesRaw = localStorage.getItem('four5_custom_product_images');
+        const categoryImagesRaw = localStorage.getItem('four5_custom_category_images');
+        const heroImage = localStorage.getItem('four5_custom_hero_image');
+        const storyImage = localStorage.getItem('four5_brand_story_image');
+        const performanceImage = localStorage.getItem('four5_performance_image');
+
+        if (!productImagesRaw && !categoryImagesRaw && !heroImage && !storyImage && !performanceImage) {
+          return;
+        }
+
+        const productImages = productImagesRaw ? JSON.parse(productImagesRaw) : {};
+        const categoryImages = categoryImagesRaw ? JSON.parse(categoryImagesRaw) : {};
+
+        const res = await fetch('/api/save-all-images', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            productImages,
+            categoryImages,
+            heroImage,
+            storyImage,
+            performanceImage,
+          }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.savedCount > 0) {
+            console.log(`[Auto-Sync] ${data.savedCount} images saved permanently to server files.`);
+          }
+        }
+      } catch (err) {
+        console.warn('Auto-sync notice:', err);
+      }
+    };
+
+    syncLocalImagesToServer();
   }, []);
 
   // E-Commerce Core State
@@ -265,7 +305,6 @@ export default function App() {
           onOpenAccount={() => handleOpenAccount('orders')}
           onOpenChat={() => setIsChatOpen(true)}
           onOpenTrendRadar={() => setIsTrendRadarOpen(true)}
-          onOpenImageManager={() => setIsImageManagerOpen(true)}
         />
       </header>
 
@@ -621,14 +660,6 @@ export default function App() {
           <span>← Back to Home</span>
         </button>
       )}
-
-      {/* Live Store Shoe Photo Manager Modal */}
-      <ImageManagerModal
-        isOpen={isImageManagerOpen}
-        onClose={() => setIsImageManagerOpen(false)}
-        products={productsList}
-        onRefresh={handleRefreshImages}
-      />
     </div>
   );
 }

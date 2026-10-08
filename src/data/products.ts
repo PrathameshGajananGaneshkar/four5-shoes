@@ -34,35 +34,35 @@ export const CATEGORIES_DATA: {
     name: 'Sneakers',
     slug: 'sneakers',
     count: 14,
-    image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80',
+    image: '/shoes/cat-sneakers.jpg',
     tagline: 'Street-ready 45 silhouettes designed with sharp lines & impact foam.',
   },
   {
     name: 'Sports Shoes',
     slug: 'sports-shoes',
     count: 12,
-    image: 'https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=800&auto=format&fit=crop&q=80',
+    image: '/shoes/cat-sports-shoes.jpg',
     tagline: 'Multi-sport 45 cross-trainers built for explosive speed & stability.',
   },
   {
     name: 'Running Shoes',
     slug: 'running-shoes',
     count: 10,
-    image: '/shoe2-clean.png',
+    image: '/shoes/cat-running-shoes.jpg',
     tagline: 'Featherlight 45 stride response with energy-rebounding midsoles.',
   },
   {
     name: 'Casual Shoes',
     slug: 'casual-shoes',
     count: 8,
-    image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800&auto=format&fit=crop&q=80',
+    image: '/shoes/cat-casual-shoes.jpg',
     tagline: 'Effortless all-day 45 silhouettes crafted for everyday confidence.',
   },
   {
     name: 'Lifestyle Footwear',
     slug: 'lifestyle-footwear',
     count: 11,
-    image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80',
+    image: '/shoes/cat-lifestyle-footwear.jpg',
     tagline: 'Contemporary 45 athletic luxury crafted for the modern mover.',
   },
 ];
@@ -103,27 +103,25 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'FOUR5 Drop Edition (Black / Orange)',
         hex: '#FF4800',
-        image: '/shoe2-clean.png',
+        image: '/shoes/four5-velocity-runner.jpg',
         gallery: [
-          '/shoe2-clean.png',
+          '/shoes/four5-velocity-runner.jpg',
         ],
       },
       {
         name: 'Triple Stealth Onyx',
         hex: '#18181B',
-        image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-velocity-runner.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-velocity-runner.jpg',
         ],
       },
       {
         name: 'Chalk White / Steel',
         hex: '#E4E4E7',
-        image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-velocity-runner.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-velocity-runner.jpg',
         ],
       },
     ],
@@ -185,19 +183,17 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Monochrome Pitch Black',
         hex: '#111113',
-        image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-street-pro.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-street-pro.jpg',
         ],
       },
       {
         name: 'Clean Pure White',
         hex: '#FFFFFF',
-        image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-street-pro.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-street-pro.jpg',
         ],
       },
     ],
@@ -250,19 +246,17 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Desert Sand / Obsidian',
         hex: '#D1C7BD',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-urban-x.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-urban-x.jpg',
         ],
       },
       {
         name: 'Storm Grey / Infrared',
         hex: '#6B7280',
-        image: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-urban-x.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-urban-x.jpg',
         ],
       },
     ],
@@ -315,18 +309,17 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Volt Neon / Carbon',
         hex: '#CCFF00',
-        image: 'https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-apex-trainer.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-apex-trainer.jpg',
         ],
       },
       {
         name: 'Battleship Slate',
         hex: '#374151',
-        image: 'https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-apex-trainer.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-apex-trainer.jpg',
         ],
       },
     ],
@@ -379,18 +372,17 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Vintage Bone / Crisp White',
         hex: '#F4F4F5',
-        image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-legacy-sneaker.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-legacy-sneaker.jpg',
         ],
       },
       {
         name: 'Rose Blush / White',
         hex: '#FBCFE8',
-        image: 'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-legacy-sneaker.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-legacy-sneaker.jpg',
         ],
       },
     ],
@@ -443,18 +435,17 @@ export const PRODUCTS_DATA: Product[] = [
       {
         name: 'Arctic Frost / Lilac',
         hex: '#DDD6FE',
-        image: 'https://images.unsplash.com/photo-1539185441755-769473a23570?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-motion-runner.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1539185441755-769473a23570?w=900&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-motion-runner.jpg',
         ],
       },
       {
         name: 'Onyx Black / Glow',
         hex: '#18181B',
-        image: 'https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=900&auto=format&fit=crop&q=80',
+        image: '/shoes/four5-motion-runner.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=900&auto=format&fit=crop&q=80',
+          '/shoes/four5-motion-runner.jpg',
         ],
       },
     ],

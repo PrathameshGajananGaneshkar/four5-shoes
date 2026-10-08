@@ -20,6 +20,22 @@
   <body class="bg-[#FAFAFB] text-[#111113] antialiased selection:bg-[#FF4800] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Automatic fallback for VS Code Live Server:
+      // If Vite dev server is not running and main.tsx is not evaluated by a bundler,
+      // redirect seamlessly to the pre-built dist/index.html
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && root.children.length === 0 && !window.__vite_plugin_react_preamble_installed__) {
+          var target = window.location.pathname.endsWith('/') 
+            ? window.location.pathname + 'dist/index.html'
+            : window.location.pathname.replace(/index\.html$/, 'dist/index.html');
+          if (window.location.pathname.indexOf('/dist') === -1) {
+            window.location.replace(target);
+          }
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
 

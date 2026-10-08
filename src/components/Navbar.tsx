@@ -28,7 +28,6 @@ interface NavbarProps {
   onOpenAccount: () => void;
   onOpenChat?: () => void;
   onOpenTrendRadar?: () => void;
-  onOpenImageManager?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -44,7 +43,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAccount,
   onOpenChat,
   onOpenTrendRadar,
-  onOpenImageManager,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

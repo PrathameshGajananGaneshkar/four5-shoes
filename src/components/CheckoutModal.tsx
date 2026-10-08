@@ -77,7 +77,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         total: `₹${finalTotal.toLocaleString('en-IN')}`,
         status: 'Order Confirmed',
         tracking: `Dispatched from Chikhli Facility to ${city}, ${state}`,
-        image: items[0]?.selectedColor.image || items[0]?.product.colors[0]?.image || '/shoe2-clean.png',
+        image: items[0]?.selectedColor.image || items[0]?.product.colors[0]?.image || '/shoes/four5-velocity-runner.jpg',
         carrier: 'Delhivery Surface Express',
         awbNumber: `DLV-${Math.floor(100000000 + Math.random() * 900000000)}`,
         deliveryCity: `${city}, ${state}`,

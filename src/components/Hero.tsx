@@ -5,7 +5,6 @@ import {
   Zap,
   Truck,
   Sparkles,
-  Camera,
   RotateCcw,
   Film,
   Play,
@@ -17,9 +16,8 @@ import {
   Sliders,
   Check,
   X,
-  ExternalLink,
 } from 'lucide-react';
-import { BRAND_INFO, PRODUCTS_DATA } from '../data/products';
+import { BRAND_INFO } from '../data/products';
 import { Product } from '../types';
 import { saveVideoToStorage, loadVideoFromStorage } from '../utils/videoStorage';
 
@@ -35,11 +33,7 @@ export const Hero: React.FC<HeroProps> = ({
   onShopMen,
   onShopWomen,
   onShopNow,
-  onExploreNew,
-  onQuickView,
 }) => {
-  const heroProduct = PRODUCTS_DATA[0]; // FOUR5 Velocity Runner
-  const [activeAngleIndex, setActiveAngleIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -73,20 +67,6 @@ export const Hero: React.FC<HeroProps> = ({
     });
   }, []);
 
-  const [customHeroImage, setCustomHeroImage] = useState<string | null>(() => {
-    try {
-      const saved = localStorage.getItem('four5_custom_hero_image');
-      if (saved && (saved.includes('shoe2.png') || saved.includes('shoe2.jpeg') || saved.includes('shoe2-clean.svg'))) {
-        localStorage.removeItem('four5_custom_hero_image');
-        return null;
-      }
-      return saved;
-    } catch {
-      return null;
-    }
-  });
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
   const modalVideoInputRef = useRef<HTMLInputElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -181,32 +161,6 @@ export const Hero: React.FC<HeroProps> = ({
     setIsVideoModalOpen(false);
   };
 
-  const handleCustomImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        setCustomHeroImage(result);
-        try {
-          localStorage.setItem('four5_custom_hero_image', result);
-        } catch {
-          // Ignore quota errors
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleResetImage = () => {
-    setCustomHeroImage(null);
-    try {
-      localStorage.removeItem('four5_custom_hero_image');
-    } catch {
-      // Ignore
-    }
-  };
-
   const handleMenClick = () => {
     if (onShopMen) onShopMen();
     else if (onShopNow) onShopNow();
@@ -217,23 +171,6 @@ export const Hero: React.FC<HeroProps> = ({
     else if (onShopNow) onShopNow();
   };
 
-  const handleInspectClick = () => {
-    if (onQuickView) {
-      onQuickView(heroProduct);
-    } else if (onExploreNew) {
-      onExploreNew();
-    } else if (onShopNow) {
-      onShopNow();
-    }
-  };
-
-  const heroImages = [
-    {
-      label: 'Velocity Runner',
-      url: customHeroImage || '/shoe2-clean.png',
-    },
-  ];
-
   // Dynamic overlay opacity for maximum background video clarity
   const overlayClass =
     videoVibrancy === 'vibrant'
@@ -243,7 +180,7 @@ export const Hero: React.FC<HeroProps> = ({
       : 'bg-gradient-to-r from-black/60 via-black/35 to-transparent';
 
   return (
-    <section className="relative overflow-hidden min-h-[92vh] flex items-center bg-[#09090b] text-white pt-8 pb-16 lg:py-24">
+    <section className="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center bg-[#09090b] text-white pt-8 pb-14 lg:py-20">
       {/* 1. BACKGROUND LOOPING VIDEO LAYER */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {isYouTubeHero || heroVideoError ? (
@@ -281,10 +218,10 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* 2. FOREGROUND CONTENT: All Home Page Text Layered on Top of Video */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
           
-          {/* Left Column: Headlines & CTAs */}
-          <div className="lg:col-span-6 space-y-6 text-left">
+          {/* Headlines, Description & CTAs */}
+          <div className="max-w-3xl space-y-6 text-left">
             {/* Top Brand Tag with Live Motion beacon */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-xl">
               <span className="w-2.5 h-2.5 rounded-full bg-[#FF4800] animate-ping" />
@@ -307,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Supporting Description */}
-            <p className="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-xl font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+            <p className="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-2xl font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               {BRAND_INFO.heroSupportingText} Engineered with responsive Kinetic-Foam™, breathable Jacquard mesh, and uncompromising Indian athletic ambition.
             </p>
 
@@ -328,7 +265,7 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={handleMenClick}
-                className="flex-1 sm:flex-initial group px-5 sm:px-7 py-3 sm:py-4 bg-[#FF4800] hover:bg-[#E03E00] text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-xl shadow-orange-950/80 flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer active:scale-98"
+                className="flex-1 sm:flex-initial group px-6 sm:px-8 py-3.5 sm:py-4 bg-[#FF4800] hover:bg-[#E03E00] text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-xl shadow-orange-950/80 flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer active:scale-98"
               >
                 <span>SHOP MEN</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -337,14 +274,14 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={handleWomenClick}
-                className="flex-1 sm:flex-initial px-5 sm:px-7 py-3 sm:py-4 bg-black/60 hover:bg-black/80 border border-white/25 text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl backdrop-blur-md flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer active:scale-98 shadow-xl"
+                className="flex-1 sm:flex-initial px-6 sm:px-8 py-3.5 sm:py-4 bg-black/60 hover:bg-black/80 border border-white/25 text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl backdrop-blur-md flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer active:scale-98 shadow-xl"
               >
                 <span>SHOP WOMEN</span>
               </button>
             </div>
 
             {/* Value Props Row with glassmorphism */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-4 sm:pt-6 border-t border-white/15 text-left">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-4 sm:pt-6 border-t border-white/15 text-left max-w-2xl">
               <div className="space-y-0.5 sm:space-y-1 bg-black/40 p-2 sm:p-2.5 rounded-xl backdrop-blur-sm border border-white/5">
                 <div className="flex items-center gap-1 sm:gap-1.5 text-[#FF4800]">
                   <Truck className="w-3.5 h-3.5 shrink-0" />
@@ -371,107 +308,49 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Hero Sneaker Showcase with Floating Badges & Video Controls */}
-          <div className="lg:col-span-6 relative flex flex-col items-center">
-            {/* Visual Frame */}
-            <div className="relative w-full aspect-square max-w-[320px] sm:max-w-[420px] lg:max-w-lg mx-auto flex items-center justify-center">
-              
-              {/* Subtle Backglow Accent */}
-              <div className="absolute inset-4 rounded-full bg-[#FF4800]/15 blur-3xl pointer-events-none" />
-
-              {/* Central Sneaker Image (with drop shadow & hover animation) */}
-              <div className="relative z-10 w-full h-full flex items-center justify-center p-2 sm:p-4">
-                <img
-                  src={heroImages[activeAngleIndex].url}
-                  alt="FOUR5 Velocity Runner - Hero Athletic Sneaker"
-                  className="w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.95)] hover:scale-105 transition-transform duration-500 cursor-pointer"
-                  onClick={handleInspectClick}
-                />
-              </div>
-            </div>
-
-            {/* Bottom Floating Bar: Sneaker Controls & Video Settings */}
-            <div className="flex flex-wrap items-center justify-between w-full max-w-[320px] sm:max-w-[420px] lg:max-w-lg mt-3 sm:mt-4 px-1 sm:px-2 gap-2 sm:gap-3">
-              <div className="flex items-center gap-2 flex-wrap">
-                {/* Upload Photo Button */}
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleCustomImageUpload}
-                  accept="image/*"
-                  className="hidden"
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  title="Upload / Change Photo from your device"
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-xl bg-black/70 hover:bg-zinc-800 text-amber-300 border border-white/10 transition-all cursor-pointer"
-                >
-                  <Camera className="w-3.5 h-3.5" />
-                  <span className="hidden xs:inline">Photo</span>
-                </button>
-
-                {customHeroImage && (
-                  <button
-                    type="button"
-                    onClick={handleResetImage}
-                    title="Reset to default"
-                    className="p-1.5 text-zinc-400 hover:text-white bg-black/70 border border-white/10 rounded-xl cursor-pointer"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                  </button>
-                )}
-
-                {/* Background Video Quick Modal Button */}
-                <input
-                  type="file"
-                  ref={videoInputRef}
-                  onChange={handleCustomVideoUpload}
-                  accept="video/mp4,video/webm,video/quicktime"
-                  className="hidden"
-                />
-                <button
-                  type="button"
-                  onClick={() => setIsVideoModalOpen(true)}
-                  title="होमपेज बॅकग्राउंड व्हिडिओ बदला / अपलोड करा (Change Background Video)"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4800] to-amber-500 hover:opacity-95 text-white font-bold transition-all cursor-pointer shadow-md active:scale-95"
-                >
-                  <Film className="w-3.5 h-3.5" />
-                  <span>व्हिडिओ सेटिंग</span>
-                </button>
-
-                {/* Video Play & Mute Controls */}
-                {!isYouTubeHero && (
-                  <div className="flex items-center gap-1 ml-1 bg-black/70 border border-white/15 p-1 rounded-xl">
-                    <button
-                      type="button"
-                      onClick={toggleVideoPlay}
-                      className="p-1 hover:text-[#FF4800] text-zinc-200 transition-colors cursor-pointer"
-                      title={isVideoPlaying ? 'व्हिडिओ थांबवा (Pause Video)' : 'व्हिडिओ सुरू करा (Play Video)'}
-                    >
-                      {isVideoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={toggleVideoMute}
-                      className="p-1 hover:text-[#FF4800] text-zinc-200 transition-colors cursor-pointer"
-                      title={isVideoMuted ? 'आवाज सुरू करा (Unmute)' : 'आवाज बंद करा (Mute)'}
-                    >
-                      {isVideoMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#FF4800]" />}
-                    </button>
-                  </div>
-                )}
-              </div>
-
+          {/* Floating Video Controls in Hero */}
+          <div className="flex flex-row lg:flex-col items-center lg:items-end gap-3 shrink-0 self-start lg:self-end">
+            <div className="flex items-center gap-2 bg-black/75 backdrop-blur-md border border-white/15 p-2 rounded-2xl shadow-2xl">
+              {/* Background Video Quick Modal Button */}
+              <input
+                type="file"
+                ref={videoInputRef}
+                onChange={handleCustomVideoUpload}
+                accept="video/mp4,video/webm,video/quicktime"
+                className="hidden"
+              />
               <button
                 type="button"
-                onClick={handleInspectClick}
-                className="text-xs font-bold text-zinc-200 hover:text-white underline underline-offset-4 decoration-[#FF4800] cursor-pointer"
+                onClick={() => setIsVideoModalOpen(true)}
+                title="होमपेज बॅकग्राउंड व्हिडिओ बदला / अपलोड करा (Change Background Video)"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4800] to-amber-500 hover:opacity-95 text-white font-bold transition-all cursor-pointer shadow-md active:scale-95"
               >
-                Inspect Velocity Runner (₹2,999) &rarr;
+                <Film className="w-3.5 h-3.5" />
+                <span>व्हिडिओ सेटिंग</span>
               </button>
-            </div>
 
+              {/* Video Play & Mute Controls */}
+              {!isYouTubeHero && (
+                <div className="flex items-center gap-1 bg-zinc-900/80 border border-white/10 p-1 rounded-xl">
+                  <button
+                    type="button"
+                    onClick={toggleVideoPlay}
+                    className="p-1 hover:text-[#FF4800] text-zinc-200 transition-colors cursor-pointer"
+                    title={isVideoPlaying ? 'व्हिडिओ थांबवा (Pause Video)' : 'व्हिडिओ सुरू करा (Play Video)'}
+                  >
+                    {isVideoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleVideoMute}
+                    className="p-1 hover:text-[#FF4800] text-zinc-200 transition-colors cursor-pointer"
+                    title={isVideoMuted ? 'आवाज सुरू करा (Unmute)' : 'आवाज बंद करा (Mute)'}
+                  >
+                    {isVideoMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#FF4800]" />}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
         </div>

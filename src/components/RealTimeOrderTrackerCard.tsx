@@ -67,7 +67,7 @@ export const PRESET_TRACKING_ORDERS: Record<string, OrderTrackingData> = {
     isDelivered: true,
     statusBadge: 'Delivered',
     statusBadgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-    image: '/shoe2-clean.png',
+    image: '/shoes/four5-velocity-runner.jpg',
     deliveryOtp: 'VERIFIED',
     timeline: [
       {
@@ -348,7 +348,7 @@ export const RealTimeOrderTrackerCard: React.FC<RealTimeOrderTrackerCardProps> =
           isDelivered: false,
           statusBadge: 'Dispatched & In Transit',
           statusBadgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
-          image: userOrder.image || '/shoe2-clean.png',
+          image: userOrder.image || '/shoes/four5-velocity-runner.jpg',
           deliveryOtp: '4582',
           timeline: [
             {
@@ -407,7 +407,7 @@ export const RealTimeOrderTrackerCard: React.FC<RealTimeOrderTrackerCardProps> =
         isDelivered: false,
         statusBadge: 'Live In Transit',
         statusBadgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
-        image: '/shoe2-clean.png',
+        image: '/shoes/four5-velocity-runner.jpg',
         deliveryOtp: '8412',
         timeline: [
           {

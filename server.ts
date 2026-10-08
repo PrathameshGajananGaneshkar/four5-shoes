@@ -92,6 +92,78 @@ async function startServer() {
     }
   });
 
+  // Bulk save all custom images from client (syncs browser localStorage into disk files)
+  app.post('/api/save-all-images', async (req: Request, res: Response) => {
+    try {
+      const { productImages, categoryImages, heroImage, storyImage, performanceImage } = req.body;
+      const shoesDir = path.resolve(__dirname, 'public', 'shoes');
+      const distShoesDir = path.resolve(__dirname, 'dist', 'shoes');
+
+      await fs.promises.mkdir(shoesDir, { recursive: true });
+      try {
+        await fs.promises.mkdir(distShoesDir, { recursive: true });
+      } catch {}
+
+      const saveBase64 = async (dataUrl: string, targetFilename: string) => {
+        const matches = dataUrl.match(/^data:image\/([A-Za-z-+]+);base64,(.+)$/);
+        if (!matches || matches.length !== 3) return null;
+        const buffer = Buffer.from(matches[2], 'base64');
+        const pubPath = path.resolve(__dirname, 'public', targetFilename);
+        await fs.promises.writeFile(pubPath, buffer);
+        try {
+          const dPath = path.resolve(__dirname, 'dist', targetFilename);
+          await fs.promises.writeFile(dPath, buffer);
+        } catch {}
+        return `/${targetFilename}`;
+      };
+
+      let savedCount = 0;
+
+      if (productImages && typeof productImages === 'object') {
+        for (const [prodId, dataUrl] of Object.entries(productImages)) {
+          if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image')) {
+            const ext = dataUrl.includes('png') ? 'png' : 'jpg';
+            const filename = `shoes/${prodId}.${ext}`;
+            await saveBase64(dataUrl, filename);
+            savedCount++;
+          }
+        }
+      }
+
+      if (categoryImages && typeof categoryImages === 'object') {
+        for (const [slug, dataUrl] of Object.entries(categoryImages)) {
+          if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image')) {
+            const filename = `shoes/cat-${slug}.jpg`;
+            await saveBase64(dataUrl, filename);
+            savedCount++;
+          }
+        }
+      }
+
+      if (heroImage && typeof heroImage === 'string' && heroImage.startsWith('data:image')) {
+        await saveBase64(heroImage, 'hero-shoe.jpg');
+        await saveBase64(heroImage, 'shoe2-clean.png');
+        savedCount++;
+      }
+
+      if (storyImage && typeof storyImage === 'string' && storyImage.startsWith('data:image')) {
+        await saveBase64(storyImage, 'story-shoe.jpg');
+        savedCount++;
+      }
+
+      if (performanceImage && typeof performanceImage === 'string' && performanceImage.startsWith('data:image')) {
+        await saveBase64(performanceImage, 'performance-shoe.jpg');
+        savedCount++;
+      }
+
+      console.log(`[Sync] Successfully saved ${savedCount} images to disk.`);
+      return res.json({ success: true, savedCount });
+    } catch (err: any) {
+      console.error('[Sync Error]', err);
+      return res.status(500).json({ error: err.message || 'Failed to sync images' });
+    }
+  });
+
   // Gemini AI Stylist Multi-turn Chat Endpoint (with optional Google Search grounding)
   app.post('/api/chat', async (req: Request, res: Response) => {
     try {

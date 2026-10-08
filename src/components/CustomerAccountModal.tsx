@@ -70,7 +70,7 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({
       total: '₹2,999',
       status: 'Delivered',
       tracking: 'Delivered to Pune, Maharashtra',
-      image: '/shoe2-clean.png',
+      image: '/shoes/four5-velocity-runner.jpg',
     },
     {
       id: 'F45-519203',
@@ -94,7 +94,7 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({
       total: o.total,
       status: o.status || 'Order Placed',
       tracking: o.tracking || 'In Fulfillment',
-      image: o.image || '/shoe2-clean.png',
+      image: o.image || '/shoes/four5-velocity-runner.jpg',
     })),
     ...baseDemoOrders,
   ];
